@@ -1,4 +1,5 @@
 {
+  // Vite 配置文件（vite.config.ts）的 TypeScript 编译选项
   "include": ["vite.config.*"],
   "compilerOptions": {
     "composite": true,

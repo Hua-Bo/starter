@@ -1,3 +1,10 @@
+# ============================================================
+# Cloudflare Workers 自动部署
+# 触发：推送到 main，或手动 workflow_dispatch
+# 前置：在仓库 Secrets 中配置
+#   - CLOUDFLARE_API_TOKEN
+#   - CLOUDFLARE_ACCOUNT_ID
+# ============================================================
 name: Deploy Cloudflare Workers
 
 on:
@@ -23,6 +30,7 @@ jobs:
 
       - name: Build
         env:
+          # Cloudflare 使用根路径部署
           VITE_BASE: /
         run: npm run build
 

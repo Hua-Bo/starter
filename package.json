@@ -1,6 +1,7 @@
 {
   "name": "vue-vite-starter",
   "version": "1.0.0",
+  "description": "Vue 3 + Vite + TypeScript 项目模板，内置 GitHub Pages 与 Cloudflare Workers 自动部署",
   "private": true,
   "type": "module",
   "engines": {

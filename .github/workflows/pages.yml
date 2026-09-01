@@ -1,3 +1,10 @@
+# ============================================================
+# GitHub Pages 自动部署
+# 触发：推送到 main，或手动 workflow_dispatch
+# 产物：推送到 gh-pages 分支
+# 首次部署后需在 Settings → Pages 选择 gh-pages / root
+# 访问：https://<用户名>.github.io/<仓库名>/
+# ============================================================
 name: Deploy GitHub Pages
 
 on:
@@ -32,13 +39,15 @@ jobs:
 
       - name: Build for GitHub Pages
         env:
-          # 项目页地址：https://<user>.github.io/<repo>/
+          # GitHub Pages 项目页必须以 /仓库名/ 为根路径
           VITE_BASE: /${{ github.event.repository.name }}/
         run: npm run build
 
       - name: Add SPA fallback and .nojekyll
         run: |
+          # 404.html 用于 SPA 路由刷新回退
           cp dist/index.html dist/404.html
+          # 禁用 Jekyll 处理，避免 _ 开头文件被忽略
           touch dist/.nojekyll
 
       - name: Deploy to gh-pages branch
@@ -54,6 +63,7 @@ jobs:
         with:
           path: dist
 
+  # 可选：通过 GitHub Actions 托管 Pages（需在 Settings 中启用）
   deploy-actions:
     needs: build-and-deploy
     if: github.ref == 'refs/heads/main'

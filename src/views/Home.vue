@@ -1,7 +1,12 @@
 <script setup lang="ts">
+/**
+ * 首页（占位页）
+ * 开发时可替换为实际业务页面，或删除后改用其他路由作为入口
+ */
 import { computed } from 'vue'
 
 const appTitle = computed(() => import.meta.env.VITE_APP_TITLE || 'Vue Starter')
+/** 当前部署的基路径，用于调试 GitHub Pages 子路径是否正确 */
 const baseUrl = computed(() => import.meta.env.BASE_URL)
 </script>
 
